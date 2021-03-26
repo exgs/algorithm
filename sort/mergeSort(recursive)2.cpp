@@ -45,10 +45,10 @@ int main()
 {
 	// int lists[24] = {5,3,4,2,1,1,6,4,3,2,6,4,9,5,3,2,6,8,3,5,7,4,3,1};
 	// int count = 24;
-	int lists[3] = {3, 2, 0};
-	int count = 3;
-	// int lists[4] = {3, 2, 1, 0};
-	// int count = 4;
+	// int lists[3] = {3, 2, 0};
+	// int count = 3;
+	int lists[4] = {3, 2, 1, 0};
+	int count = 4;
 	// int lists[5] = {3, 2, 6, 4, 0};
 	// int count = 5;
 	int *result;
@@ -90,10 +90,11 @@ void divid(int *lists, s_data data, int **temp1, int **temp2)
 	}
 	print_nums(*temp2, data.back_size);
 
-	setting_data(data, data.front_size);
-	mergesort(*temp1, data);
-	setting_data(data, data.back_size);
-	mergesort(*temp2, data);
+	s_data data_input;
+	setting_data(data_input, data.front_size);
+	mergesort(*temp1, data_input);
+	setting_data(data_input, data.back_size);
+	mergesort(*temp2, data_input);
 }
 
 int *merge(int *temp1, int *temp2, s_data data)
@@ -102,6 +103,8 @@ int *merge(int *temp1, int *temp2, s_data data)
 	int a = 0; int b = 0;
 	for (size_t i = 0; i < data.size; i++)
 	{
+		cout << "a : " << a << "b : " << b << endl;
+		cout << "left : " << temp1[a] << "right : " << temp2[b]  << endl;
 		if (a == data.front_size)
 			temp3[i] = temp2[b++];
 		else if (b == data.back_size)
