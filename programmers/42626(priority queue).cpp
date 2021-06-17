@@ -7,7 +7,7 @@ int solution(vector<int> scoville, int K) {
     int answer = 0;
     int first_value;
     int second_value;
-    priority_queue<int,vector<int>,greater<int>> pq (scoville.begin(),scoville.end());
+    priority_queue<int,vector<int>,greater<int> > pq(scoville.begin(),scoville.end());
 
     while(pq.top() < K)
     {
