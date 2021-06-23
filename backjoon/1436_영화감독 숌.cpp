@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 // 첫째 줄에 숫자 N이 주어진다. N은 10,000보다 작거나 같은 자연수이다.
@@ -7,8 +8,28 @@ using namespace std;
 
 bool is_bad_number(int num)
 {
-	std::string temp;
-	
+	std::string num_str = std::to_string(num);
+	string stack = "";
+	for (size_t i = 0; i < num_str.length(); i++)
+	{
+		if (num_str[i] == '6')
+		{
+			stack += '6';
+		}
+
+		if (stack.length() != 0)
+		{
+			if (stack.length() >= 3)
+			{
+				return (true);
+			}
+			else if (num_str[i] != '6')
+			{
+				stack = "";
+			}
+		}
+	}
+	return (false);
 }
 
 int main()
