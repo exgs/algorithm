@@ -21,15 +21,17 @@ void print_nums(int nums[], size_t count)
 	cout << endl;
 }
 
-void bubblesort(int *array, size_t count)
+void selectsort(int *array, size_t count)
 {
-	for (size_t i = count - 1; i > 0; i--)
+	for (size_t i = 0; i < count; i++)
 	{
-		for (size_t j = 0; j < i; j++)
+		int min_index = i;
+		for (size_t j = i; j < count; j++)
 		{
-			if (array[j] > array[j + 1])
-				swap(array[j], array[j + 1]);
+			if (array[min_index] > array[j])
+				min_index = j;
 		}
+		swap(array[i] ,array[min_index]);
 	}
 }
 
@@ -43,7 +45,7 @@ int main()
 	size_t count = sizeof(lists)/sizeof(lists[0]);
 
 	print_nums(lists, count);
-	bubblesort(lists, count);
+	selectsort(lists, count);
 	print_nums(lists, count);
 	return (0);
 }
