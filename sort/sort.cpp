@@ -178,12 +178,30 @@ int *merge(int *temp1, int *temp2, s_data mergedata)
 
 int partition(int array[], int start, int end)
 {
-	return (0);
+	int pivot_value = array[end];
+	int input_pivot = start - 1;
+	int i = start;
+	while (i <= end - 1)
+	{
+		if (array[i] < pivot_value)
+		{
+			input_pivot++;
+			if (input_pivot != i)
+				swap(array[i], array[input_pivot]);
+		}
+		i++;
+	}
+	swap(array[end], array[input_pivot + 1]);
+	return (input_pivot + 1);
 }
 
 void quicksort(int array[], int start, int end)
 {
-
+	if (start >= end)
+		return ;
+	int pivot_index = partition(array, start, end);
+	quicksort(array, start, pivot_index - 1);
+	quicksort(array, pivot_index + 1, end);
 }
 
 int main()
@@ -197,16 +215,15 @@ int main()
 	print_nums(lists, count);
 
 	// bubblesort(lists, count);
-	selectsort(lists, count);
+	// selectsort(lists, count);
 	// insertsort(lists, count);
 	// shellsort(lists, count);
+	quicksort(lists, 0, count - 1);
 
 	/* mergesort는 반환값이 있어서 특별함 */
 	// setting_data(&merge_data, count);
 	// int *temp = mergesort(lists, merge_data);
 	// print_nums(temp, count);
-
-	// quicksort(lists, 0, count - 1);
 	print_nums(lists, count);
 
 	system("leaks a.out | grep leaks | grep bytes");
