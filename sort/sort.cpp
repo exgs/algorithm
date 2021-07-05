@@ -40,16 +40,20 @@ void selectsort(int *array, size_t count)
 		return ;
 	for (size_t i = 0; i <= count - 2; i++)
 	{
+		int min_index = i;
 		for (size_t j = i + 1; j <= count - 1; j++)
 		{
-			if (array[i] > array[j])
-				swap(array[i], array[j]);
+			if (array[min_index] > array[j])
+				min_index = j;
 		}
+		swap(array[i], array[min_index]);
 	}
 }
 
 void insertsort(int *array, size_t count)
 {
+	if (count == 0 || count == 1)
+		return ;
 	for (size_t i = 1; i < count; i++)
 	{
 		int key_index = i;
@@ -66,6 +70,8 @@ void insertsort(int *array, size_t count)
 
 void shell_insertsort(int *array, int start, int interval ,size_t count)
 {
+	if (count == 0 || count == 1)
+		return ;
 	for (size_t i = start + interval; i < count; i += interval)
 	{
 		int key_index = i;
@@ -91,7 +97,6 @@ void shellsort(int *array, size_t count)
 		}
 		interval /= 2;
 	}
-	
 }
 
 void setting_data(s_data *data, int count)
@@ -144,7 +149,6 @@ void divid(int *lists, s_data mergedata, int **temp1, int **temp2)
 	delete []before_temp1; delete []before_temp2;
 }
 
-
 int *merge(int *temp1, int *temp2, s_data mergedata)
 {
 	int *temp3 = new int[mergedata.size];
@@ -193,7 +197,7 @@ int main()
 	print_nums(lists, count);
 
 	// bubblesort(lists, count);
-	// selectsort(lists, count);
+	selectsort(lists, count);
 	// insertsort(lists, count);
 	// shellsort(lists, count);
 
@@ -202,9 +206,9 @@ int main()
 	// int *temp = mergesort(lists, merge_data);
 	// print_nums(temp, count);
 
-	quicksort(lists, 0, count - 1);
+	// quicksort(lists, 0, count - 1);
 	print_nums(lists, count);
 
-	system("leaks a.out");
+	system("leaks a.out | grep leaks | grep bytes");
 	return (0);
 }
