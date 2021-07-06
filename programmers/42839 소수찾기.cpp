@@ -7,14 +7,12 @@
 
 using namespace std;
 
-
-int gCount = 0;
 bool isPrimenumber(int num)
 {
 	int count = 0;
-	for (size_t i = 0; i < num; i++)
+	for (int i = 1; i <= num; i++)
 	{
-		if (num % i == 0 && i != 0)
+		if ((num % i == 0) && i != 0)
 		{
 			count++;
 		}
@@ -26,28 +24,47 @@ bool isPrimenumber(int num)
 }
 
 
-void Permutation(vector<char> datas, int size)
-{
+// void Permutation(vector<char> datas, int size)
+// {
 	
-}
+// }
 
 int solution(string numbers) {
-	vector<char> datas;
-	for (size_t i = 0; i < numbers.size(); i++)
+	int count = 0;
+	// vector<char> datas;
+	// for (size_t i = 0; i < numbers.size(); i++)
+	// {
+	// 	datas.push_back((char)numbers[i] - 48);
+	// }
+
+	for (size_t i = 0; i < count; i++)
 	{
-		datas.push_back((char)numbers[i] - 48);
+		while (next_permutation(numbers.begin(), numbers.end()) == true)
+		{
+			string temp = "";
+			for (size_t i = 0; i < numbers.size(); i++)
+			{
+				temp += numbers[i];
+			}
+			cout << temp << endl;
+			int temp2 = atoi(temp.c_str());
+			// int temp2 = stol(temp);
+			if (isPrimenumber(temp2) == true)
+			{
+				count++;
+			}
+		}
 	}
+	
 
 	// STUB debugging
-	vector<char>::iterator it = datas.begin();
-	while (it != datas.end())
-	{
-		cout << (int)*it << endl;
-		it++;
-	}
-
-	int answer = 0;
-	return answer;
+	// vector<char>::iterator it = datas.begin();
+	// while (it != datas.end())
+	// {
+	// 	cout << (int)*it << endl;
+	// 	it++;
+	// }
+	return count;
 }
 
 int main()
@@ -57,6 +74,6 @@ int main()
 	// long temp3 = stol(temp1);
 	// cout << temp3 << endl;
 	cout << "------" << endl;
-	cout << solution(temp) << endl;
+	cout << solution(temp1) << endl;
 	return(0);
 }
