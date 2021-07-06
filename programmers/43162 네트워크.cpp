@@ -29,8 +29,6 @@ bool is_connectedList(std::set<int> &connectedList, int index)
 
 void DFSfunction(std::set<int> &connectedList, int index, vector<vector<int> > &computers)
 {
-	// if (is_connectedList(connectedList, index) == true)
-	// 	return ;
 	vector<int> node = computers[index];
 	for (int i = 0; i < node.size(); i++)
 	{
