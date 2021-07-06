@@ -57,7 +57,7 @@ int solution(int n, vector<vector<int> > computers)
 				continue ;
 			else
 			{
-				cout << j << ": ww " << endl;
+				cout << "index: " << j << endl;
 				sum++;
 				DFSfunction(connectedList, j, computers);
 			}
@@ -66,10 +66,10 @@ int solution(int n, vector<vector<int> > computers)
 	set<int>::iterator it = connectedList.begin();
 	while (it != connectedList.end())
 	{
-		cout << "value : " << *it << endl;
+		// cout << "value : " << *it << endl;
 		it++;
 	}
-	cout << "set size: " << connectedList.size() << endl;
+	// cout << "set size: " << connectedList.size() << endl;
 	return sum;
 }
 
