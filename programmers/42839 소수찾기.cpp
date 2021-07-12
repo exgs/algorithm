@@ -23,54 +23,35 @@ bool isPrimenumber(int num)
 		return (false);
 }
 
-
-// void Permutation(vector<char> datas, int size)
-// {
-	
-// }
-
 int solution(string numbers) {
 	int count = 0;
-	// vector<char> datas;
-	// for (size_t i = 0; i < numbers.size(); i++)
-	// {
-	// 	datas.push_back((char)numbers[i] - 48);
-	// }
-
-	for (size_t i = 0; i < count; i++)
-	{
-		while (next_permutation(numbers.begin(), numbers.end()) == true)
-		{
+	int len = numbers.size();
+	for (int i = 1; i <= len; i++) {
+		vector<bool> v(len - i, false);
+		v.insert(v.end(), i, true);
+		do {
 			string temp = "";
-			for (size_t i = 0; i < numbers.size(); i++)
+			for (int k = 0; k < len; k++)
 			{
-				temp += numbers[i];
+				if (v[k])
+					temp += numbers[k];
 			}
-			cout << temp << endl;
-			int temp2 = atoi(temp.c_str());
-			// int temp2 = stol(temp);
-			if (isPrimenumber(temp2) == true)
+			do
 			{
-				count++;
-			}
-		}
+				long value = stol(temp);
+				cout << "value: " << value << endl;
+				if (isPrimenumber(value) == true)
+					count++;
+			} while (next_permutation(temp.begin(), temp.end()));
+		} while (next_permutation(v.begin(), v.end()));
 	}
-	
-
-	// STUB debugging
-	// vector<char>::iterator it = datas.begin();
-	// while (it != datas.end())
-	// {
-	// 	cout << (int)*it << endl;
-	// 	it++;
-	// }
 	return count;
 }
 
 int main()
 {
-	string temp("17");
-	string temp1("011");
+	string temp("17"); // 3
+	string temp1("011"); // 2
 	// long temp3 = stol(temp1);
 	// cout << temp3 << endl;
 	cout << "------" << endl;
