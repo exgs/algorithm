@@ -3,6 +3,13 @@
 #include <vector>
 using namespace std;
 
+bool comp(const string &a, const string &b)
+{
+	if (a.size() < b.size())
+		return (true);
+	return false;
+}
+
 bool solution(vector<string> phone_book) {
 	bool answer = true;
 	sort(phone_book.begin(), phone_book.end()); // string은 사전식 정렬
