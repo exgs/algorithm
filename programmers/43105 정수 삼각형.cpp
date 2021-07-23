@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 
 using namespace std;
@@ -34,14 +35,7 @@ int solution(vector<vector<int>> triangle)
 			}
 		}
 	}
-	
-	int sum = 0;
-	for (size_t i = 0; i < triangle[count - 1].size(); i++)
-	{
-		if (sum < triangle[count - 1][i])
-			sum = triangle[count - 1][i];
-	}
-	return sum;
+	return *max_element(triangle[count - 1].begin(), triangle[count - 1].end());
 }
 
 int main()
