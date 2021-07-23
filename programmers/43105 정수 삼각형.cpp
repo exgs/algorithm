@@ -4,7 +4,6 @@
 
 using namespace std;
 
-int g_max = 0;
 int solution(vector<vector<int>> triangle)
 {
 	int count = triangle.size();
@@ -24,18 +23,11 @@ int solution(vector<vector<int>> triangle)
 			}
 			else
 			{
-				if (triangle[i - 1][j - 1] > triangle[i - 1][j])
-				{
-					triangle[i][j] += triangle[i - 1][j - 1];
-				}
-				else
-				{
-					triangle[i][j] += triangle[i - 1][j];
-				}
+				triangle[i][j] += max(triangle[i - 1][j - 1], triangle[i - 1][j]);
 			}
 		}
 	}
-	return *max_element(triangle[count - 1].begin(), triangle[count - 1].end());
+	return *(max_element(triangle[count - 1].begin(), triangle[count - 1].end()));
 }
 
 int main()
@@ -43,6 +35,6 @@ int main()
 	vector<vector<int> > vector1 = {{7}, {3, 8}, {8, 1, 0}, {2, 7, 4, 4}, {4, 5, 2, 6, 5}}; // 30
 	vector<vector<int> > vector2 = {{1}, {1, 2}, {1, 2, 3}, {1, 2, 3, 4}, {100, 100, 1000, 100, 100}}; // 1009
 
-	cout << solution(vector2) << endl;
+	cout << solution(vector1) << endl;
 	return(0);
 }
