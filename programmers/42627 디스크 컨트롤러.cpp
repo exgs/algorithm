@@ -32,8 +32,22 @@ int solution(vector<vector<int>> jobs) {
 	priority_queue<pair<int, int>, vector<pair<int, int> >, priority_comp > pq;
 	while ( !(pq.size() == 0 && jobs.size() == 0) )
 	{
+		/* 정렬이 되어있기 때문에 break; 가능*/
 		int count = jobs.size();
-		int count_pop = 0;
+		for (size_t i = 0; i < count; i++)
+		{
+			if (jobs.back()[0] <= time)
+			{
+				pq.push(std::make_pair(jobs.back()[0], jobs.back()[1]));
+				jobs.pop_back();
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		/*
 		vector<vector<int>> jobs_copy(jobs);
 		while (jobs_copy.size() != 0)
 		{
@@ -48,6 +62,7 @@ int solution(vector<vector<int>> jobs) {
 		{
 			jobs.pop_back();
 		}
+		*/
 
 		// 컨트롤러는 하나의 작업만 실행가능
 		if (pq.size() != 0)
