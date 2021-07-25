@@ -37,9 +37,9 @@ void recursive(string cur, vector<string> words, int count)
 	{
 		if (similar(cur, word))
 		{
-			vector<string> temp;
-			temp.resize(words.size());
-			std::copy(words.begin(), words.end(), temp.begin());
+			vector<string> temp(words);
+			// temp.resize(words.size());
+			// std::copy(words.begin(), words.end(), temp.begin());
 			temp.erase(find(temp.begin(), temp.end(), word));
 			recursive(word, temp, count);
 		}
