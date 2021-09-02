@@ -24,10 +24,13 @@ namespace Mainapp
                 int i;
                 for (i = n - 2; i >= 0; i--)
                 {
-                    if (a[i].CompareTo(a[i + 1]) < 0) break;
+                    if (a[i].CompareTo(a[i + 1]) < 0) 
+                       break;
                 }
+
                 // 2
-                if (i < 0) break;
+                if (i < 0)
+                    break;
 
                 // 3
                 var j = n;
@@ -36,16 +39,13 @@ namespace Mainapp
                     j--;
                 } while (a[i].CompareTo(a[j]) > 0);
 
-                if (a[i].CompareTo(a[j]) < 0)
-                {
                     // 4
-                    var tmp = a[i];
-                    a[i] = a[j];
-                    a[j] = tmp;
-                    Array.Reverse(a, i + 1, n - i - 1);
-                    res.Add(new List<T>(a).ToArray());
-                    next = true;
-                }
+                var tmp = a[i];
+                a[i] = a[j];
+                a[j] = tmp;
+                Array.Reverse(a, i + 1, n - i - 1);
+                res.Add(new List<T>(a).ToArray());
+                next = true;
             }
             return res;
         }
@@ -55,11 +55,9 @@ namespace Mainapp
             string temp = (Console.ReadLine());
             int value = int.Parse(temp);
             int[] num_array = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-            int[] input_array = new int[value];
-            for (int i = 0; i < value; i++)
-            {
-                input_array[i] = num_array[i];
-            }
+            // https://www.techiedelight.com/get-subarray-of-array-csharp/
+            int[] input_array = num_array.Take(value).ToArray(); // Linq take()
+            Array.Sort(input_array); // For preparing situation when literal value change
             foreach (var item in AllPermutation(input_array))
             {
                 Console.WriteLine(string.Join(" ", item));
